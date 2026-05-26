@@ -612,6 +612,16 @@ export default function App() {
       }
     );
 
+    ScrollTrigger.create({
+      trigger: '.footer-neon',
+      start: 'top 85%',
+      end: 'bottom 15%',
+      toggleClass: {
+        targets: '.footer-neon',
+        className: 'is-animating'
+      }
+    });
+
     // 4. Project Image Follow Cursor
     const reveal = imageRevealRef.current;
     if (reveal) {

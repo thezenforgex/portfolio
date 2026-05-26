@@ -200,11 +200,14 @@ body {
 }
 
 .footer-name-bg:hover .footer-name-bloom,
-.footer-name-bg:hover .footer-name-glow {
+.footer-name-bg:hover .footer-name-glow,
+.footer-neon.is-animating .footer-name-bloom,
+.footer-neon.is-animating .footer-name-glow {
   animation: footerNeonSweep 3.4s cubic-bezier(0.42, 0, 0.18, 1) infinite;
 }
 
-.footer-name-bg:hover .footer-name-bloom {
+.footer-name-bg:hover .footer-name-bloom,
+.footer-neon.is-animating .footer-name-bloom {
   animation-name: footerNeonBloom;
 }
 
@@ -292,14 +295,17 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .footer-name-bg:hover .footer-name-bloom,
-  .footer-name-bg:hover .footer-name-glow {
+  .footer-name-bg:hover .footer-name-glow,
+  .footer-neon.is-animating .footer-name-bloom,
+  .footer-neon.is-animating .footer-name-glow {
     animation: none;
     mask-position: 50% 0;
     -webkit-mask-position: 50% 0;
     opacity: 0.28;
   }
 
-  .footer-name-bg:hover .footer-name-bloom {
+  .footer-name-bg:hover .footer-name-bloom,
+  .footer-neon.is-animating .footer-name-bloom {
     opacity: 0.14;
   }
 }
