@@ -113,3 +113,193 @@ body {
 .animate-modal {
   animation: modalFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* Neon outline footer */
+.footer-neon {
+  isolation: isolate;
+  min-height: clamp(34rem, 54vw, 48rem);
+}
+
+.footer-neon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(45, 212, 191, 0.09), transparent 30%),
+    linear-gradient(180deg, rgba(20, 184, 166, 0.045), transparent 48%);
+}
+
+.footer-name-bg {
+  position: absolute;
+  inset: clamp(1.25rem, 4vw, 3.25rem) 0 auto;
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.footer-name-outline,
+.footer-name-bloom,
+.footer-name-glow {
+  font-family: var(--font-display);
+  font-size: clamp(4.75rem, 16.5vw, 16rem);
+  line-height: 0.82;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke: 1px rgba(148, 255, 250, 0.13);
+  text-stroke: 1px rgba(148, 255, 250, 0.13);
+}
+
+.footer-name-outline {
+  opacity: 0.58;
+  filter: drop-shadow(0 0 18px rgba(20, 184, 166, 0.06));
+  pointer-events: auto;
+}
+
+.footer-name-bloom,
+.footer-name-glow {
+  position: absolute;
+  inset: 0 auto auto 50%;
+  transform: translate3d(-50%, 0, 0);
+  pointer-events: none;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 40%, #000 60%, transparent 100%);
+  mask-repeat: no-repeat;
+  mask-size: 28% 100%;
+  mask-position: -36% 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 40%, #000 60%, transparent 100%);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 28% 100%;
+  -webkit-mask-position: -36% 0;
+  will-change: mask-position, -webkit-mask-position, opacity, filter;
+}
+
+.footer-name-bloom {
+  -webkit-text-stroke: 7px rgba(45, 212, 191, 0.28);
+  text-stroke: 7px rgba(45, 212, 191, 0.28);
+  opacity: 0;
+  filter:
+    blur(8px)
+    drop-shadow(0 0 28px rgba(6, 182, 212, 0.34));
+}
+
+.footer-name-glow {
+  -webkit-text-stroke: 1.35px rgba(178, 255, 251, 0.98);
+  text-stroke: 1.35px rgba(178, 255, 251, 0.98);
+  opacity: 0;
+  filter:
+    drop-shadow(0 0 7px rgba(45, 212, 191, 0.74))
+    drop-shadow(0 0 22px rgba(6, 182, 212, 0.34))
+    blur(0.2px);
+}
+
+.footer-name-bg:hover .footer-name-bloom,
+.footer-name-bg:hover .footer-name-glow {
+  animation: footerNeonSweep 3.4s cubic-bezier(0.42, 0, 0.18, 1) infinite;
+}
+
+.footer-name-bg:hover .footer-name-bloom {
+  animation-name: footerNeonBloom;
+}
+
+@keyframes footerNeonSweep {
+  0% {
+    mask-position: -36% 0;
+    -webkit-mask-position: -36% 0;
+    opacity: 0;
+    filter:
+      drop-shadow(0 0 5px rgba(45, 212, 191, 0.38))
+      drop-shadow(0 0 14px rgba(6, 182, 212, 0.18))
+      blur(0.2px);
+  }
+
+  16% {
+    opacity: 0.68;
+  }
+
+  48% {
+    opacity: 0.94;
+    filter:
+      drop-shadow(0 0 10px rgba(45, 212, 191, 0.92))
+      drop-shadow(0 0 30px rgba(6, 182, 212, 0.42))
+      blur(0.25px);
+  }
+
+  76% {
+    opacity: 0.58;
+  }
+
+  100% {
+    mask-position: 136% 0;
+    -webkit-mask-position: 136% 0;
+    opacity: 0;
+    filter:
+      drop-shadow(0 0 5px rgba(45, 212, 191, 0.3))
+      drop-shadow(0 0 14px rgba(6, 182, 212, 0.14))
+      blur(0.2px);
+  }
+}
+
+@keyframes footerNeonBloom {
+  0% {
+    mask-position: -36% 0;
+    -webkit-mask-position: -36% 0;
+    opacity: 0;
+    filter: blur(9px) drop-shadow(0 0 18px rgba(6, 182, 212, 0.18));
+  }
+
+  40% {
+    opacity: 0.34;
+    filter: blur(10px) drop-shadow(0 0 38px rgba(6, 182, 212, 0.3));
+  }
+
+  100% {
+    mask-position: 136% 0;
+    -webkit-mask-position: 136% 0;
+    opacity: 0;
+    filter: blur(9px) drop-shadow(0 0 18px rgba(6, 182, 212, 0.16));
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-neon {
+    min-height: 32rem;
+  }
+
+  .footer-name-bg {
+    inset-block-start: 2.25rem;
+  }
+
+  .footer-name-outline,
+  .footer-name-bloom,
+  .footer-name-glow {
+    font-size: clamp(3.4rem, 20vw, 6.5rem);
+    -webkit-text-stroke-width: 0.85px;
+    text-stroke-width: 0.85px;
+  }
+
+  .footer-name-bloom {
+    -webkit-text-stroke-width: 4px;
+    text-stroke-width: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-name-bg:hover .footer-name-bloom,
+  .footer-name-bg:hover .footer-name-glow {
+    animation: none;
+    mask-position: 50% 0;
+    -webkit-mask-position: 50% 0;
+    opacity: 0.28;
+  }
+
+  .footer-name-bg:hover .footer-name-bloom {
+    opacity: 0.14;
+  }
+}

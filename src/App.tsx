@@ -895,9 +895,12 @@ export default function App() {
         </section>
 
         {/* Footer */}
-        <footer className="relative pt-32 pb-12 px-6 md:px-12 lg:px-24 overflow-hidden border-t border-gray-900 mt-20">
-          {/* Subtle Background Glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-green-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+        <footer className="footer-neon relative mt-20 overflow-hidden border-t border-cyan-400/10 bg-black px-6 pb-12 pt-32 md:px-12 lg:px-24">
+          <div className="footer-name-bg hover-target" aria-hidden="true">
+            <span className="footer-name-outline">ATANU DAS</span>
+            <span className="footer-name-bloom">ATANU DAS</span>
+            <span className="footer-name-glow">ATANU DAS</span>
+          </div>
 
           <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center text-center fade-up">
             <p className="text-gray-400 mb-6 text-sm md:text-base uppercase tracking-[0.2em] font-medium">Ready to start a project?</p>
