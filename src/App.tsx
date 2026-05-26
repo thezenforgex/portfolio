@@ -839,8 +839,9 @@ export default function App() {
 
               <div className="flex flex-wrap justify-center md:justify-start gap-8 md:gap-12">
                 <KaggleBadge
-                  title="Google Achievement 1"
-                  imageSrc="/google/badge1google.png"
+                  title="Arcade Holistic Infrastructure"
+                  imageSrc="/google/google1.png"
+                  href="https://www.skills.google/public_profiles/b3b7964e-3a87-4a1d-92ca-b6da0a7f0164/badges/22907787"
                 />
                 <KaggleBadge
                   title="Google Achievement 2"
