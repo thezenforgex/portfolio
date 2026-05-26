@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from '@studio-freight/lenis';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Github, Code2, Trophy } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -178,16 +178,173 @@ const TechBadge = ({ name, color }: { name: string, color: string }) => (
   </div>
 );
 
-const KaggleBadge = ({ title, imageSrc }: { title: string, imageSrc: string }) => (
-  <div className="flex flex-col items-center gap-4 group w-28">
-    <div className="relative w-24 h-24 drop-shadow-2xl transition-transform duration-500 group-hover:-translate-y-3 group-hover:scale-110">
-      <img src={imageSrc} alt={title} className="w-full h-full object-contain" />
+const KaggleBadge = ({ title, imageSrc, href }: { title: string, imageSrc: string, href?: string }) => {
+  const content = (
+    <>
+      <div className="relative w-24 h-24 drop-shadow-2xl transition-transform duration-500 group-hover:-translate-y-3 group-hover:scale-110">
+        <img src={imageSrc} alt={title} className="w-full h-full object-contain" />
+      </div>
+      <span className="text-xs text-gray-400 font-medium text-center leading-tight group-hover:text-white transition-colors">
+        {title}
+      </span>
+    </>
+  );
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+        className="hover-target flex flex-col items-center gap-4 group w-28"
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <div className="flex flex-col items-center gap-4 group w-28">
+      {content}
     </div>
-    <span className="text-xs text-gray-400 font-medium text-center leading-tight group-hover:text-white transition-colors">
-      {title}
-    </span>
-  </div>
-);
+  );
+};
+
+const GitHubContributionChart = () => {
+  const githubUrl = "https://github.com/atanudas12-hub";
+  const contributionChartUrl = "https://ghchart.rshah.org/4ade80/atanudas12-hub";
+
+  return (
+    <section id="github" className="py-20 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+      <div className="flex items-center gap-4 mb-16 fade-up">
+        <span className="text-gray-500 text-xl">âœ±</span>
+        <h3 className="text-sm text-gray-400 uppercase tracking-widest font-semibold">GITHUB ACTIVITY</h3>
+      </div>
+
+      <div className="fade-up border border-gray-800/50 bg-[#1a1a1a]/30 rounded-2xl p-6 md:p-10 backdrop-blur-sm">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
+          <div>
+            <p className="text-gray-500 text-sm mb-2">github.com/atanudas12-hub</p>
+            <h4 className="font-display text-3xl md:text-4xl text-white tracking-wide uppercase">
+              Contribution Chart
+            </h4>
+          </div>
+
+          <a
+            href={githubUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="hover-target inline-flex w-fit items-center gap-3 border border-gray-700 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-gray-200 transition-colors hover:border-green-400 hover:text-green-400"
+          >
+            <Github size={18} />
+            Visit GitHub
+          </a>
+        </div>
+
+        <div className="overflow-x-auto rounded-lg border border-gray-800 bg-[#0d0d0d] p-4 md:p-6">
+          <img
+            src={contributionChartUrl}
+            alt="Atanu Das GitHub contribution chart"
+            className="min-w-[760px] w-full h-auto"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const CodingProfiles = () => {
+  const leetcodeUrl = "https://leetcode.com/u/atanudas12-hub/";
+  const leetcodeCardUrl = "https://leetcard.jacoblin.cool/atanudas12-hub?theme=dark&font=Inter&ext=heatmap";
+  const hackerRankUrl = "https://www.hackerrank.com/profile/atanudas120706";
+
+  return (
+    <section id="coding-profiles" className="py-20 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+      <div className="flex items-center gap-4 mb-16 fade-up">
+        <span className="text-gray-500 text-xl">*</span>
+        <h3 className="text-sm text-gray-400 uppercase tracking-widest font-semibold">CODING PROFILES</h3>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 fade-up">
+        <div className="border border-gray-800/50 bg-[#1a1a1a]/30 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 mb-8">
+            <div>
+              <p className="text-gray-500 text-sm mb-2">leetcode.com/u/atanudas12-hub</p>
+              <h4 className="font-display text-3xl text-white tracking-wide uppercase">
+                LeetCode
+              </h4>
+            </div>
+
+            <a
+              href={leetcodeUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="hover-target inline-flex w-fit items-center gap-3 border border-gray-700 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-gray-200 transition-colors hover:border-yellow-400 hover:text-yellow-400"
+            >
+              <Code2 size={18} />
+              Visit LeetCode
+            </a>
+          </div>
+
+          <div className="overflow-hidden rounded-lg border border-gray-800 bg-[#0d0d0d] p-4">
+            <img
+              src={leetcodeCardUrl}
+              alt="Atanu Das LeetCode stats card"
+              className="w-full h-auto"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <div className="border border-gray-800/50 bg-[#1a1a1a]/30 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 mb-8">
+            <div>
+              <p className="text-gray-500 text-sm mb-2">hackerrank.com/profile/atanudas120706</p>
+              <h4 className="font-display text-3xl text-white tracking-wide uppercase">
+                HackerRank
+              </h4>
+            </div>
+
+            <a
+              href={hackerRankUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="hover-target inline-flex w-fit items-center gap-3 border border-gray-700 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-gray-200 transition-colors hover:border-green-400 hover:text-green-400"
+            >
+              <Trophy size={18} />
+              Visit HackerRank
+            </a>
+          </div>
+
+          <a
+            href={hackerRankUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="hover-target group block rounded-lg border border-gray-800 bg-[#0d0d0d] p-8 transition-colors hover:border-green-400/70"
+          >
+            <div className="flex h-full min-h-[255px] flex-col justify-between gap-10">
+              <div>
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-green-400/10 text-green-400">
+                  <Trophy size={28} />
+                </div>
+                <p className="text-sm uppercase tracking-[0.24em] text-green-400">Practice Profile</p>
+                <h5 className="mt-4 font-display text-4xl text-white tracking-wide uppercase">
+                  atanudas120706
+                </h5>
+              </div>
+
+              <div className="flex items-center justify-between gap-6 border-t border-gray-800 pt-6">
+                <span className="text-sm text-gray-400">View certificates, skills, and challenges.</span>
+                <ArrowUpRight className="shrink-0 text-gray-500 transition-colors group-hover:text-green-400" size={28} />
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const ProjectRow = ({ num, title, tags, image, setHoveredImage }: { num: string, title: string, tags: string[], image: string, setHoveredImage: (img: string | null) => void }) => (
   <div
@@ -229,6 +386,8 @@ const Sidebar = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) 
             <li><a href="https://www.linkedin.com/in/atanu-das-/" className="text-gray-300 hover:text-green-400 transition-colors text-lg">Linkedin</a></li>
             {/* <li><a href="#" className="text-gray-300 hover:text-green-400 transition-colors text-lg">Facebook</a></li> */}
             <li><a href="https://www.kaggle.com/atanudas0712" className="text-gray-300 hover:text-green-400 transition-colors text-lg">Kaggle</a></li>
+            <li><a href="https://leetcode.com/u/atanudas12-hub/" className="text-gray-300 hover:text-green-400 transition-colors text-lg">LeetCode</a></li>
+            <li><a href="https://www.hackerrank.com/profile/atanudas120706" className="text-gray-300 hover:text-green-400 transition-colors text-lg">HackerRank</a></li>
           </ul>
         </div>
         <div>
@@ -239,6 +398,9 @@ const Sidebar = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) 
             <li><a href="#education" onClick={onClose} className="text-gray-300 hover:text-green-400 transition-colors flex items-center gap-3 text-lg"><span className="w-2 h-2 rounded-full bg-orange-400"></span> Education</a></li>
             <li><a href="#experience" onClick={onClose} className="text-gray-300 hover:text-green-400 transition-colors flex items-center gap-3 text-lg"><span className="w-2 h-2 rounded-full bg-purple-400"></span> Experience</a></li>
             <li><a href="#projects" onClick={onClose} className="text-gray-300 hover:text-green-400 transition-colors flex items-center gap-3 text-lg"><span className="w-2 h-2 rounded-full bg-yellow-400"></span> Projects</a></li>
+            <li><a href="#github" onClick={onClose} className="text-gray-300 hover:text-green-400 transition-colors flex items-center gap-3 text-lg"><span className="w-2 h-2 rounded-full bg-green-400"></span> GitHub</a></li>
+            <li><a href="#coding-profiles" onClick={onClose} className="text-gray-300 hover:text-green-400 transition-colors flex items-center gap-3 text-lg"><span className="w-2 h-2 rounded-full bg-yellow-400"></span> Coding Profiles</a></li>
+            <li><a href="#google-skills" onClick={onClose} className="text-gray-300 hover:text-green-400 transition-colors flex items-center gap-3 text-lg"><span className="w-2 h-2 rounded-full bg-blue-500"></span> Google Skills</a></li>
           </ul>
         </div>
       </div>
@@ -504,11 +666,11 @@ export default function App() {
             </div>
             <div className="lg:col-span-4 flex flex-col justify-center gap-12 lg:text-right mt-12 lg:mt-0">
               <div className="hero-fade opacity-0 transform translate-y-8">
-                <h3 className="font-display text-6xl text-green-400">2+</h3>
+                <h3 className="font-display text-6xl text-green-400">3+</h3>
                 <p className="text-gray-400 text-sm uppercase tracking-widest mt-2">Years Coding</p>
               </div>
               <div className="hero-fade opacity-0 transform translate-y-8">
-                <h3 className="font-display text-6xl text-green-400">2+</h3>
+                <h3 className="font-display text-6xl text-green-400">3+</h3>
                 <p className="text-gray-400 text-sm uppercase tracking-widest mt-2">Projects Built</p>
               </div>
               <div className="hero-fade opacity-0 transform translate-y-8">
@@ -662,6 +824,41 @@ export default function App() {
           </div>
         </section>
 
+        {/* Google Skills Achievement Section */}
+        <section id="google-skills" className="py-20 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+          <div className="flex items-center gap-4 mb-16 fade-up">
+            <span className="text-gray-500 text-xl">✱</span>
+            <h3 className="text-sm text-gray-400 uppercase tracking-widest font-semibold">GOOGLE SKILLS ACHIEVEMENT II</h3>
+          </div>
+
+          <div className="space-y-12 fade-up">
+            <div className="border border-gray-800/50 bg-[#1a1a1a]/30 rounded-2xl p-8 md:p-12 backdrop-blur-sm">
+              <h4 className="font-display text-3xl text-white mb-10 tracking-wide flex items-center gap-3">
+                <span className="text-blue-500">Google</span> Cloud Skills
+              </h4>
+
+              <div className="flex flex-wrap justify-center md:justify-start gap-8 md:gap-12">
+                <KaggleBadge
+                  title="Google Achievement 1"
+                  imageSrc="/google/badge1google.png"
+                />
+                <KaggleBadge
+                  title="Google Achievement 2"
+                  imageSrc="/google/badge2google.png"
+                />
+                <KaggleBadge
+                  title="Google Skills Badge"
+                  imageSrc="/google/badge3google.jpg"
+                  href="https://www.skills.google/public_profiles/b3b7964e-3a87-4a1d-92ca-b6da0a7f0164/badges/22907787"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <GitHubContributionChart />
+        <CodingProfiles />
+
         {/* Experience Section */}
         <section id="experience" className="py-20 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
           <div className="flex items-center gap-4 mb-16 fade-up">
@@ -723,9 +920,11 @@ export default function App() {
 
               <div className="flex flex-col gap-3">
                 <span className="text-gray-300 font-medium mb-1 uppercase tracking-wider text-xs">Socials</span>
-                <div className="flex gap-6">
-                  <a href="#" className="hover:text-green-400 transition-colors">GitHub</a>
-                  <a href="#" className="hover:text-green-400 transition-colors">LinkedIn</a>
+                <div className="flex flex-wrap gap-6">
+                  <a href="https://github.com/atanudas12-hub" className="hover:text-green-400 transition-colors">GitHub</a>
+                  <a href="https://www.linkedin.com/in/atanu-das-/" className="hover:text-green-400 transition-colors">LinkedIn</a>
+                  <a href="https://leetcode.com/u/atanudas12-hub/" className="hover:text-green-400 transition-colors">LeetCode</a>
+                  <a href="https://www.hackerrank.com/profile/atanudas120706" className="hover:text-green-400 transition-colors">HackerRank</a>
                   <a href="#" className="hover:text-green-400 transition-colors">Twitter</a>
                 </div>
               </div>
