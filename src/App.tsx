@@ -1,4 +1,29 @@
 import React, { useEffect, useRef, useState } from 'react';
+// Workaround: Provide minimal JSX typings when @types/react or react/jsx-runtime
+// declarations are missing in the environment. This prevents TypeScript errors
+// like "JSX element implicitly has type 'any'" during compilation.
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      [elemName: string]: any;
+    }
+  }
+}
+// Provide a lightweight ambient module for react/jsx-runtime to avoid
+// TypeScript augmentation issues when the actual module lacks types.
+// Provide lightweight, safe typings for the runtime to avoid TS augmentation
+// errors when the installed module lacks type declarations.
+declare module 'react/jsx-runtime' {
+  // Minimal exports used by JSX emit. Mark as any to avoid type errors.
+  export const jsx: any;
+  export const jsxs: any;
+  export const jsxDEV: any;
+  export default jsx;
+}
+
+declare module 'react/jsx-runtime.js' {
+  export { jsx, jsxs, jsxDEV, default } from 'react/jsx-runtime';
+}
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from '@studio-freight/lenis';
@@ -799,14 +824,14 @@ export default function App() {
                   title="AI Agents Intensive Course with Google"
                   imageSrc="/badges/AI_Agents_Google.png"
                 />
-                <KaggleBadge
+                {/* <KaggleBadge
                   title="Intro to Programming"
                   imageSrc="/badges/intro-programming.png"
-                />
-                <KaggleBadge
+                /> */}
+                {/* <KaggleBadge
                   title="Data Visualization"
                   imageSrc="/badges/data-viz.png"
-                />
+                /> */}
                 {/* <KaggleBadge
                   title="Discord Community"
                   imageSrc="/badges/discord.png"
@@ -843,7 +868,7 @@ export default function App() {
                   imageSrc="/google/google1.png"
                   href="https://www.skills.google/public_profiles/b3b7964e-3a87-4a1d-92ca-b6da0a7f0164/badges/22907787"
                 />
-                <KaggleBadge
+                {/* <KaggleBadge
                   title="Google Achievement 2"
                   imageSrc="/google/badge2google.png"
                 />
@@ -851,7 +876,7 @@ export default function App() {
                   title="Google Skills Badge"
                   imageSrc="/google/badge3google.jpg"
                   href="https://www.skills.google/public_profiles/b3b7964e-3a87-4a1d-92ca-b6da0a7f0164/badges/22907787"
-                />
+                /> */}
               </div>
             </div>
           </div>
