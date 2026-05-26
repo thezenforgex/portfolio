@@ -1,3 +1,5 @@
+/** @jsxRuntime classic */
+// @ts-ignore: suppress missing type declarations for react in this environment
 import React, { useEffect, useRef, useState } from 'react';
 // Workaround: Provide minimal JSX typings when @types/react or react/jsx-runtime
 // declarations are missing in the environment. This prevents TypeScript errors
@@ -9,20 +11,20 @@ declare global {
     }
   }
 }
-// Provide a lightweight ambient module for react/jsx-runtime to avoid
-// TypeScript augmentation issues when the actual module lacks types.
 // Provide lightweight, safe typings for the runtime to avoid TS augmentation
 // errors when the installed module lacks type declarations.
-declare module 'react/jsx-runtime' {
-  // Minimal exports used by JSX emit. Mark as any to avoid type errors.
+declare module 'react/jsx-runtime.js' {
   export const jsx: any;
   export const jsxs: any;
   export const jsxDEV: any;
-  export default jsx;
+  export default any;
 }
 
-declare module 'react/jsx-runtime.js' {
-  export { jsx, jsxs, jsxDEV, default } from 'react/jsx-runtime';
+declare module 'react' {
+  export const useEffect: any;
+  export const useRef: any;
+  export const useState: any;
+  export default any;
 }
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -508,15 +510,15 @@ const HireMeModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">Name</label>
-                <input required type="text" value={name} onChange={e => setName(e.target.value)} className="w-full bg-[#1a1a1a] border border-gray-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-green-400 transition-colors" placeholder="John Doe" disabled={status === 'submitting'} />
+                <input required type="text" value={name} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)} className="w-full bg-[#1a1a1a] border border-gray-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-green-400 transition-colors" placeholder="John Doe" disabled={status === 'submitting'} />
               </div>
               <div>
                 <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">Email</label>
-                <input required type="email" value={email} onChange={e => setEmail(e.target.value)} className="w-full bg-[#1a1a1a] border border-gray-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-green-400 transition-colors" placeholder="john@example.com" disabled={status === 'submitting'} />
+                <input required type="email" value={email} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} className="w-full bg-[#1a1a1a] border border-gray-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-green-400 transition-colors" placeholder="john@example.com" disabled={status === 'submitting'} />
               </div>
               <div>
                 <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">Message</label>
-                <textarea required value={message} onChange={e => setMessage(e.target.value)} rows={4} className="w-full bg-[#1a1a1a] border border-gray-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-green-400 transition-colors resize-none" placeholder="Tell me about your project..." disabled={status === 'submitting'}></textarea>
+                <textarea required value={message} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)} rows={4} className="w-full bg-[#1a1a1a] border border-gray-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-green-400 transition-colors resize-none" placeholder="Tell me about your project..." disabled={status === 'submitting'}></textarea>
               </div>
               {status === 'error' && (
                 <p className="text-red-400 text-xs mt-2">Something went wrong. Please try again or email directly.</p>
