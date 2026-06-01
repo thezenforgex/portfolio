@@ -373,18 +373,26 @@ const CodingProfiles = () => {
   );
 };
 
-const ProjectRow = ({ num, title, tags, image, setHoveredImage }: { num: string, title: string, tags: string[], image: string, setHoveredImage: (img: string | null) => void }) => (
+const ProjectRow = ({ num, title, tags, image, githubUrl, setHoveredImage }: { num: string, title: string, tags: string[], image: string, githubUrl: string, setHoveredImage: (img: string | null) => void }) => (
   <div
-    className="hover-target group flex flex-col md:flex-row md:items-start gap-4 md:gap-8 py-12 border-b border-gray-800 hover:bg-[#1a1a1a]/80 transition-all duration-500 px-6 -mx-6 cursor-pointer relative"
+    className="hover-target group flex flex-col md:flex-row md:items-start gap-4 md:gap-8 py-12 border-b border-gray-800 hover:bg-[#1a1a1a]/80 transition-all duration-500 px-6 md:pr-28 -mx-6 cursor-pointer relative"
     onMouseEnter={() => setHoveredImage(image)}
     onMouseLeave={() => setHoveredImage(null)}
   >
     <span className="text-gray-500 font-display text-2xl mt-2 group-hover:text-green-400 transition-colors duration-500">{num}</span>
     <div className="flex-1">
-      <h3 className="font-display text-5xl md:text-7xl lg:text-8xl text-gray-300 group-hover:text-white transition-colors duration-500 tracking-wide uppercase flex items-center gap-6">
-        {title}
-        <ArrowUpRight className="opacity-0 group-hover:opacity-100 transform -translate-x-4 group-hover:translate-x-0 transition-all duration-500 text-green-400" size={48} />
-      </h3>
+      <a
+        href={githubUrl}
+        target="_blank"
+        rel="noreferrer"
+        onClick={(e) => e.stopPropagation()}
+        className="inline-flex items-center gap-6"
+        aria-label={`Open ${title} GitHub repository`}
+      >
+        <h3 className="font-display text-5xl md:text-7xl lg:text-8xl text-gray-300 group-hover:text-white transition-colors duration-500 tracking-wide uppercase">
+          {title}
+        </h3>
+      </a>
       <div className="flex flex-wrap gap-4 mt-6">
         {tags.map((tag, i) => (
           <span key={tag} className="text-sm text-gray-400 flex items-center gap-4 group-hover:text-gray-300 transition-colors duration-500">
@@ -394,6 +402,16 @@ const ProjectRow = ({ num, title, tags, image, setHoveredImage }: { num: string,
         ))}
       </div>
     </div>
+    <a
+      href={githubUrl}
+      target="_blank"
+      rel="noreferrer"
+      onClick={(e) => e.stopPropagation()}
+      className="hover-target z-[60] flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-green-400/60 text-green-400 transition-all duration-300 hover:bg-green-400 hover:text-black md:absolute md:right-6 md:top-1/2 md:-translate-y-1/2"
+      aria-label={`Open ${title} GitHub repository`}
+    >
+      <ArrowUpRight size={34} />
+    </a>
   </div>
 );
 
@@ -949,12 +967,12 @@ export default function App() {
           </div>
 
           <div className="flex flex-col fade-up">
-            <ProjectRow num="01." title="Placement Portal" tags={['Python', 'Flask', 'SQLite', 'Jinja', 'FastAPI']} image="/project/placement-portal.png" setHoveredImage={setHoveredImage} />
-            <ProjectRow num="02." title="Sales Analytics" tags={['Pandas', 'Matplotlib', 'Next.js']} image="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800" setHoveredImage={setHoveredImage} />
-            <ProjectRow num="03." title="Resume Roaster" tags={['GPT-4', 'Next.js', 'PostgreSQL']} image="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&q=80&w=800" setHoveredImage={setHoveredImage} />
-            <ProjectRow num="04." title="Electro EV" tags={['Next.js', 'Payload CMS', 'Tailwind CSS']} image="https://images.unsplash.com/photo-1593941707882-a5bba14938cb?auto=format&fit=crop&q=80&w=800" setHoveredImage={setHoveredImage} />
-            <ProjectRow num="05." title="Real Estate API" tags={['Node.js', 'Express', 'MongoDB']} image="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800" setHoveredImage={setHoveredImage} />
-            <ProjectRow num="06." title="devLinks" tags={['Next.js', 'Formik', 'Drag & Drop']} image="https://images.unsplash.com/photo-1618761714954-0b8cd0026356?auto=format&fit=crop&q=80&w=800" setHoveredImage={setHoveredImage} />
+            <ProjectRow num="01." title="Placement Portal" tags={['Python', 'Flask', 'SQLite', 'Jinja', 'FastAPI']} image="/project/placement-portal.png" githubUrl="https://github.com/atanudas12-hub/MAD1-Project" setHoveredImage={setHoveredImage} />
+            {/* <ProjectRow num="02." title="Sales Analytics" tags={['Pandas', 'Matplotlib', 'Next.js']} image="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800" githubUrl="https://github.com/atanudas12-hub/sales-analytics" setHoveredImage={setHoveredImage} />
+            <ProjectRow num="03." title="Resume Roaster" tags={['GPT-4', 'Next.js', 'PostgreSQL']} image="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&q=80&w=800" githubUrl="https://github.com/atanudas12-hub/resume-roaster" setHoveredImage={setHoveredImage} />
+            <ProjectRow num="04." title="Electro EV" tags={['Next.js', 'Payload CMS', 'Tailwind CSS']} image="https://images.unsplash.com/photo-1593941707882-a5bba14938cb?auto=format&fit=crop&q=80&w=800" githubUrl="https://github.com/atanudas12-hub/electro-ev" setHoveredImage={setHoveredImage} />
+            <ProjectRow num="05." title="Real Estate API" tags={['Node.js', 'Express', 'MongoDB']} image="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800" githubUrl="https://github.com/atanudas12-hub/real-estate-api" setHoveredImage={setHoveredImage} />
+            <ProjectRow num="06." title="devLinks" tags={['Next.js', 'Formik', 'Drag & Drop']} image="https://images.unsplash.com/photo-1618761714954-0b8cd0026356?auto=format&fit=crop&q=80&w=800" githubUrl="https://github.com/atanudas12-hub/devlinks" setHoveredImage={setHoveredImage} /> */}
           </div>
         </section>
 
