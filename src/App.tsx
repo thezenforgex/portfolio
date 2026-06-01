@@ -858,6 +858,32 @@ export default function App() {
                 /> */}
               </div>
             </div>
+
+            <div className="border border-gray-800/50 bg-[#1a1a1a]/30 rounded-2xl p-8 md:p-12 backdrop-blur-sm">
+              <h4 className="font-display text-3xl text-white mb-10 tracking-wide flex items-center gap-3">
+                <span className="text-green-400">Hackathon</span> Participation
+              </h4>
+
+              <div className="flex flex-wrap justify-center md:justify-start gap-8 md:gap-12">
+                <a
+                  href="https://credsverse.com/credentials/212789e6-1ee0-4eff-b1ef-fe72e8476fdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover-target group flex w-32 flex-col items-center gap-4"
+                >
+                  <div className="relative flex h-24 w-24 items-center justify-center drop-shadow-2xl transition-transform duration-500 group-hover:-translate-y-3 group-hover:scale-110">
+                    <img
+                      src="/hackethon/1st.png"
+                      alt="Hackarena 2.0 participation certificate"
+                      className="h-full w-full object-contain"
+                    />
+                  </div>
+                  <span className="text-center text-xs font-medium leading-tight text-gray-400 transition-colors group-hover:text-white">
+                    Hackarena 2.0 Participation
+                  </span>
+                </a>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -923,7 +949,7 @@ export default function App() {
           </div>
 
           <div className="flex flex-col fade-up">
-            <ProjectRow num="01." title="Churn Predictor" tags={['Python', 'Scikit-Learn', 'FastAPI', 'React']} image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" setHoveredImage={setHoveredImage} />
+            <ProjectRow num="01." title="Placement Portal" tags={['Python', 'Flask', 'SQLite', 'Jinja', 'FastAPI']} image="/project/placement-portal.png" setHoveredImage={setHoveredImage} />
             <ProjectRow num="02." title="Sales Analytics" tags={['Pandas', 'Matplotlib', 'Next.js']} image="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800" setHoveredImage={setHoveredImage} />
             <ProjectRow num="03." title="Resume Roaster" tags={['GPT-4', 'Next.js', 'PostgreSQL']} image="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&q=80&w=800" setHoveredImage={setHoveredImage} />
             <ProjectRow num="04." title="Electro EV" tags={['Next.js', 'Payload CMS', 'Tailwind CSS']} image="https://images.unsplash.com/photo-1593941707882-a5bba14938cb?auto=format&fit=crop&q=80&w=800" setHoveredImage={setHoveredImage} />
