@@ -902,6 +902,35 @@ export default function App() {
                 </a>
               </div>
             </div>
+
+            <div className="border border-gray-800/50 bg-[#1a1a1a]/30 rounded-2xl p-8 md:p-12 backdrop-blur-sm">
+              <h4 className="font-display text-3xl text-white mb-8 tracking-wide flex items-center gap-3">
+                <span className="text-blue-400">Google</span> Developer Profile
+              </h4>
+
+              <a
+                href="https://g.dev/atanudas"
+                target="_blank"
+                rel="noreferrer"
+                className="hover-target group flex flex-col items-start justify-between gap-8 overflow-hidden rounded-xl border border-gray-700/60 bg-[#111] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/60 md:flex-row md:items-center md:p-8"
+              >
+                <div className="flex items-center gap-5">
+                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white text-3xl font-bold text-blue-500 shadow-lg shadow-blue-500/10">
+                    G
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium uppercase tracking-widest text-gray-500">Google for Developers</p>
+                    <p className="mt-2 text-2xl font-semibold text-white">Atanu Das</p>
+                    <p className="mt-1 text-sm text-gray-400">g.dev/atanudas</p>
+                  </div>
+                </div>
+
+                <span className="flex items-center gap-2 rounded-full border border-gray-700 px-5 py-3 text-sm font-semibold text-gray-200 transition-colors group-hover:border-blue-400 group-hover:text-blue-400">
+                  View profile
+                  <ArrowUpRight size={18} />
+                </span>
+              </a>
+            </div>
           </div>
         </section>
 
