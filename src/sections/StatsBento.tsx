@@ -338,23 +338,39 @@ export const StatsBento = () => {
               <h4 className="text-2xl font-bold font-sans text-white uppercase tracking-wide group-hover:text-emerald-400 transition-colors">Hackathons</h4>
             </div>
 
-            <a
-              href="https://credsverse.com/credentials/212789e6-1ee0-4eff-b1ef-fe72e8476fdf"
-              target="_blank"
-              rel="noreferrer"
-              className="interactive-target flex flex-col justify-between p-5 bg-black/60 border border-white/5 rounded-2xl h-full transition-all duration-300 hover:border-emerald-500/30"
-            >
-              <div className="flex flex-col items-center text-center gap-3">
-                <div className="w-16 h-16 group-hover:-translate-y-1 transition-transform duration-300">
+            <div className="flex flex-col gap-4">
+              <a
+                href="https://credsverse.com/credentials/212789e6-1ee0-4eff-b1ef-fe72e8476fdf"
+                target="_blank"
+                rel="noreferrer"
+                className="interactive-target flex items-center gap-4 p-4 bg-black/60 border border-white/5 rounded-2xl transition-all duration-300 hover:border-emerald-500/30 group/item"
+              >
+                <div className="w-12 h-12 shrink-0 transition-transform duration-300 group-hover/item:-translate-y-1">
                   <img src="/hackethon/1st.png" alt="Hackarena 2.0 Badge" className="w-full h-full object-contain" />
                 </div>
-                <div className="text-center">
-                  <span className="text-[9px] font-bold text-emerald-400 uppercase tracking-widest block font-sans">Hackarena 2.0</span>
-                  <h5 className="text-xs font-bold text-white mt-1">Credsverse Verification</h5>
-                  <p className="text-[10px] text-gray-500 mt-1">Credential ID: 212789e6</p>
+                <div className="text-left flex-grow">
+                  <span className="text-[8px] font-bold text-emerald-400 uppercase tracking-widest block font-sans">Hackarena 2.0</span>
+                  <h5 className="text-xs font-bold text-white mt-0.5">Credsverse Verification</h5>
+                  <p className="text-[10px] text-gray-500">Credential ID: 212789e6</p>
                 </div>
-              </div>
-            </a>
+              </a>
+
+              <a
+                href="https://d2c-cdn-mumbai.s3.ap-south-1.amazonaws.com/lambda-pdfs/certificate-images/11431b02-d480-4c5e-a200-be0c29e0f707.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="interactive-target flex items-center gap-4 p-4 bg-black/60 border border-white/5 rounded-2xl transition-all duration-300 hover:border-emerald-500/30 group/item"
+              >
+                <div className="w-12 h-12 shrink-0 transition-transform duration-300 group-hover/item:-translate-y-1">
+                  <img src="/hackethon/2nd.png" alt="Hackathon Certificate" className="w-full h-full object-contain" />
+                </div>
+                <div className="text-left flex-grow">
+                  <span className="text-[8px] font-bold text-emerald-400 uppercase tracking-widest block font-sans">Unstop Hackathon</span>
+                  <h5 className="text-xs font-bold text-white mt-0.5">D2C Certificate</h5>
+                  <p className="text-[10px] text-gray-500">View PDF Verification</p>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
 
