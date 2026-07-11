@@ -38,12 +38,12 @@ export const Projects = () => {
     },
     {
       num: '02',
-      title: 'Sales Analytics Dashboard',
+      title: 'Odoo1',
       subtitle: 'Data Analytics & Reporting Platform',
       description: 'An interactive analysis dashboard that ingests raw sales transaction records to generate visual reports.',
-      tags: ['Pandas', 'Matplotlib', 'Next.js', 'Tailwind CSS'],
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800',
-      githubUrl: 'https://github.com/atanudas12-hub/sales-analytics',
+      tags: ['Odoo', ''],
+      image: '/project/odoo.png',
+      githubUrl: 'https://github.com/sagnik328-sen/odoo',
       features: [
         'Real-time revenue metrics aggregation and forecasting charts.',
         'Data filtration by region, product type, and client demographics.',
@@ -52,70 +52,6 @@ export const Projects = () => {
       challenges: 'Handling real-time client side data rendering for files containing over 50,000 transaction records smoothly.',
       architecture: 'Pandas data wrangling pipelines combined with a clean Next.js dashboard template using charting libraries.'
     },
-    {
-      num: '03',
-      title: 'Resume Roaster',
-      subtitle: 'AI Assessment Tool',
-      description: 'A tool that critiques resume uploads, matches skills against job roles, and rates resumes using AI modeling.',
-      tags: ['GPT-4 API', 'Next.js', 'PostgreSQL', 'Tailwind CSS'],
-      image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&q=80&w=800',
-      githubUrl: 'https://github.com/atanudas12-hub/resume-roaster',
-      features: [
-        'ATS compatibility score tracking based on job keywords.',
-        'Automated grammatical corrections and formatting suggestions.',
-        'Tailored recommendations for resume upgrades based on target roles.'
-      ],
-      challenges: 'Tuning prompting parameters to maintain highly constructive, precise, and fast feedback loops without high token overhead.',
-      architecture: 'Next.js API routes interacting with OpenAI endpoints, using PostgreSQL for user transaction analytics.'
-    },
-    {
-      num: '04',
-      title: 'Electro EV',
-      subtitle: 'E-Commerce & Supply Showcase',
-      description: 'A custom online catalog portal showcasing electric vehicles, battery parts, charging specs, and orders.',
-      tags: ['Next.js', 'Payload CMS', 'Tailwind CSS'],
-      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800',
-      githubUrl: 'https://github.com/atanudas12-hub/electro-ev',
-      features: [
-        'Rich vehicle customization configurations (battery pack size, wheel options).',
-        'Payload CMS integration managing assets and specifications.',
-        'Animated transition paths showing range efficiency.'
-      ],
-      challenges: 'Building smooth page routes and responsive car carousel slides that maintain visual density across mobile screens.',
-      architecture: 'Vite/Next.js routes backed by custom CMS REST nodes, styled with modern dark glassmorphism.'
-    },
-    {
-      num: '05',
-      title: 'Real Estate API',
-      subtitle: 'High-performance Query Engine',
-      description: 'A secure backend query structure mapping properties, client negotiations, and transaction records.',
-      tags: ['Node.js', 'Express', 'MongoDB', 'JWT'],
-      image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800',
-      githubUrl: 'https://github.com/atanudas12-hub/real-estate-api',
-      features: [
-        'Role-based permissions for brokers, buyers, and administrators.',
-        'Advanced geo-spatial queries to retrieve matching nearby listings.',
-        'Rate limiting and input validation rules.'
-      ],
-      challenges: 'Optimizing geo-indexing queries on MongoDB to return results under 40 milliseconds.',
-      architecture: 'Express REST architecture using structured schema validations and JWT session strategies.'
-    },
-    {
-      num: '06',
-      title: 'devLinks',
-      subtitle: 'Developer Link Organizer',
-      description: 'A single page application that assists developers to compile, preview, and share all coding portfolio links.',
-      tags: ['Next.js', 'Formik', 'Drag & Drop', 'Vercel'],
-      image: 'https://images.unsplash.com/photo-1618761714954-0b8cd0026356?auto=format&fit=crop&q=80&w=800',
-      githubUrl: 'https://github.com/atanudas12-hub/devlinks',
-      features: [
-        'Interactive mockups showing immediate preview updates.',
-        'Drag-and-drop link ordering logic using custom hooks.',
-        'Social icon generators and clipboard copy keys.'
-      ],
-      challenges: 'Synchronizing interactive preview configurations instantly with multi-field forms containing validation layers.',
-      architecture: 'React hooks state-sharing context, Formik validation schemes, compiled into a Next.js framework.'
-    }
   ];
 
   useEffect(() => {
@@ -151,7 +87,7 @@ export const Projects = () => {
 
   return (
     <section id="projects" className="py-24 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
-      
+
       {/* Header */}
       <div className="flex items-center gap-4 mb-20 fade-up">
         <span className="text-green-400 font-display text-xl select-none">✱</span>
@@ -170,9 +106,8 @@ export const Projects = () => {
             <div
               key={proj.title}
               onMouseMove={handleCardMouseMove}
-              className={`project-launch-card relative overflow-hidden rounded-3xl bg-[#0a0a0a]/40 border border-white/5 p-6 md:p-8 backdrop-blur-xl group hover:border-green-400/20 transition-all duration-500 flex flex-col justify-between ${
-                isFeatured ? 'md:col-span-12' : 'md:col-span-6'
-              }`}
+              className={`project-launch-card relative overflow-hidden rounded-3xl bg-[#0a0a0a]/40 border border-white/5 p-6 md:p-8 backdrop-blur-xl group hover:border-green-400/20 transition-all duration-500 flex flex-col justify-between ${isFeatured ? 'md:col-span-12' : 'md:col-span-6'
+                }`}
               style={{
                 ['--mouse-x' as any]: '0px',
                 ['--mouse-y' as any]: '0px',
@@ -187,7 +122,7 @@ export const Projects = () => {
               />
 
               <div className="relative z-10 flex flex-col justify-between h-full">
-                
+
                 {/* Viewport Frame Header (Browser Style) */}
                 <div className="flex justify-between items-center border-b border-white/5 pb-4 mb-6">
                   <div className="flex items-center gap-1.5">
@@ -201,10 +136,10 @@ export const Projects = () => {
                 </div>
 
                 <div className={`grid grid-cols-1 ${isFeatured ? 'lg:grid-cols-12 lg:gap-10' : 'gap-6'} items-start`}>
-                  
+
                   {/* Left Column: Specs */}
                   <div className={isFeatured ? 'lg:col-span-6' : ''}>
-                    
+
                     <span className="text-xs text-green-400 font-sans tracking-wide block mb-1">
                       {proj.subtitle}
                     </span>
@@ -241,7 +176,7 @@ export const Projects = () => {
                         <Github className="w-3.5 h-3.5" />
                         <span>Source Code</span>
                       </a>
-                      
+
                       <button
                         onClick={() => toggleExpand(proj.title)}
                         className="interactive-target flex items-center gap-2 border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 px-5 py-3 rounded-xl text-xs font-semibold uppercase tracking-wider text-gray-200 transition-all duration-300 cursor-pointer"
