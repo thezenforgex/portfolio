@@ -38,10 +38,10 @@ export const Projects = () => {
     },
     {
       num: '02',
-      title: 'Odoo1',
-      subtitle: 'Data Analytics & Reporting Platform',
+      title: 'Human Resource Management System',
+      subtitle: 'A comprehensive employee management platform.',
       description: 'An interactive analysis dashboard that ingests raw sales transaction records to generate visual reports.',
-      tags: ['Odoo', ''],
+      tags: ['Odoo', 'Python', 'Html', 'CSS', 'JavaScript'],
       image: '/project/odoo.png',
       githubUrl: 'https://github.com/sagnik328-sen/odoo',
       features: [
