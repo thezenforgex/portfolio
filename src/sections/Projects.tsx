@@ -52,6 +52,23 @@ export const Projects = () => {
       challenges: 'Handling real-time client side data rendering for files containing over 50,000 transaction records smoothly.',
       architecture: 'Pandas data wrangling pipelines combined with a clean Next.js dashboard template using charting libraries.'
     },
+    {
+      num: '03',
+      title: 'EduGlow',
+      subtitle: 'Multi-Agent EdTech Platform',
+      description: 'A premium, developer-grade educational ecosystem engineered for CS education that personalizes learning through AI tutoring, cognitive misconception detection, and dynamic study paths.',
+      tags: ['React', 'Python', 'Flask', 'SQLite', 'FastMCP', 'Gemini API'],
+      image: '/project/eduglow.png',
+      githubUrl: 'https://github.com/atanudas12-hub/EduGlow',
+      features: [
+        'Socratic Dialogue Engine: Guides reasoning dynamically without revealing answers.',
+        'Voice AI Viva Examiner: Tracks speaking clarity, speech metrics (WPM), and filler words.',
+        'Secure AST Code Sandbox: Traverses and filters execution trees to block malicious commands.',
+        'Leitner Active Recall System: Schedules spaced revision decks across custom intervals.'
+      ],
+      challenges: 'Conducting secure Python code compilation in the frontend sandbox while preventing execution escapes or dunder property access.',
+      architecture: 'Built with a React (Vite) frontend, a Python Flask API backend, Google Gemini for cognitive profiling, and a FastMCP Server exposing SQLite learning histories to external LLM environments.'
+    },
   ];
 
   useEffect(() => {
