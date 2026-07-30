@@ -312,6 +312,18 @@ export const StatsBento = () => {
                   <p className="text-[11px] text-gray-400 font-light mt-1">Building reasoning agentic workflows with Gemini.</p>
                 </div>
               </div>
+              {/* Badge 3 */}
+              <div className="flex gap-4 items-center bg-black/60 rounded-2xl border border-white/5 p-5">
+                <div className="w-16 h-16 shrink-0 group-hover:scale-105 transition-transform duration-300">
+                  <img src="/badges/vibecoding.png" alt="5-Day AI Agents: Intensive Vibe Coding Course Badge" className="w-full h-full object-contain" />
+                </div>
+                <div className="text-left">
+                  <span className="text-[9px] font-bold text-sky-400 uppercase tracking-widest font-sans">5-Day AI Agents: Intensive Vibe Coding Course Badge</span>
+                  <h5 className="text-sm font-bold text-white mt-0.5">AI Agents & Google</h5>
+                  <p className="text-[11px] text-gray-400 font-light mt-1">Building reasoning agentic workflows with Gemini.</p>
+                </div>
+              </div>
+
 
             </div>
           </div>
