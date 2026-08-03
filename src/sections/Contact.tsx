@@ -1,15 +1,193 @@
-import React, { useState } from 'react';
-import { Mail, Send, Github, Linkedin, ArrowUpRight, CheckCircle2, AlertCircle } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Mail, Send, Github, Linkedin, ArrowUpRight, CheckCircle2, AlertCircle, ShieldCheck, Lock } from 'lucide-react';
 import { GlintCard } from '../components/GlintCard';
+
+declare global {
+  interface Window {
+    google?: {
+      accounts?: {
+        id?: {
+          initialize: (config: any) => void;
+          prompt: (momentListener?: any) => void;
+          renderButton: (parent: HTMLElement, options: any) => void;
+        };
+      };
+    };
+  }
+}
+
+// Spam keyword blacklist
+const SPAM_KEYWORDS = [
+  'casino', 'crypto', 'viagra', 'poker', 'porn', 'lottery', 'cheap leads',
+  'seo ranking', 'increase traffic', 'rank #1', 'whatsapp group', 'telegram group',
+  'investment opportunity', 'buy followers', 'unsolicited'
+];
 
 export const ContactForm = ({ isModal = false }: { isModal?: boolean }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [honeypot, setHoneypot] = useState(''); // Invisible field for bots
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isGoogleVerified, setIsGoogleVerified] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+
+  const mountTime = useRef<number>(Date.now());
+
+  // Load Google Identity Services Script
+  useEffect(() => {
+    mountTime.current = Date.now();
+    const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+
+    if (!clientId) return;
+
+    // Initialize GIS if window.google is ready
+    if (window.google?.accounts?.id) {
+      initGoogleAuth(clientId);
+    } else {
+      const timer = setInterval(() => {
+        if (window.google?.accounts?.id) {
+          initGoogleAuth(clientId);
+          clearInterval(timer);
+        }
+      }, 500);
+      return () => clearInterval(timer);
+    }
+  }, []);
+
+  const initGoogleAuth = (clientId: string) => {
+    try {
+      window.google?.accounts?.id?.initialize({
+        client_id: clientId,
+        callback: handleGoogleResponse,
+        auto_select: false
+      });
+    } catch (e) {
+      console.warn('Google Identity initialization skipped:', e);
+    }
+  };
+
+  const handleGoogleResponse = (response: any) => {
+    try {
+      if (response.credential) {
+        // Decode JWT payload
+        const base64Url = response.credential.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(
+          atob(base64)
+            .split('')
+            .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+            .join('')
+        );
+        const payload = JSON.parse(jsonPayload);
+
+        if (payload.email) {
+          setEmail(payload.email);
+          if (payload.name) setName(payload.name);
+          setIsGoogleVerified(true);
+          setErrorMessage('');
+        }
+      }
+    } catch (err) {
+      console.error('Failed to parse Google credential:', err);
+    } finally {
+      setIsGoogleLoading(false);
+    }
+  };
+
+  const handleTriggerGoogleAuth = () => {
+    const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+
+    if (!clientId) {
+      alert(
+        "Google Authentication Info:\n\nTo connect real Google Sign-In, add your VITE_GOOGLE_CLIENT_ID to your environment variables (.env).\n\nYour contact form is currently protected by the built-in Anti-Spam Firewall!"
+      );
+      return;
+    }
+
+    setIsGoogleLoading(true);
+    if (window.google?.accounts?.id) {
+      window.google.accounts.id.prompt((notification: any) => {
+        if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+          setIsGoogleLoading(false);
+        }
+      });
+    } else {
+      setIsGoogleLoading(false);
+    }
+  };
+
+  const validateAntiSpam = (): boolean => {
+    // 0. Google Verification Check
+    if (!isGoogleVerified || !email) {
+      setErrorMessage('Please click "Select & Verify Google Email Account" to authenticate before sending.');
+      return false;
+    }
+
+    // 1. Honeypot trap check
+    if (honeypot.trim() !== '') {
+      // Fake success to trick bot scripts
+      setStatus('success');
+      return false;
+    }
+
+    // 2. Velocity check: submission faster than 3 seconds
+    const timeElapsed = Date.now() - mountTime.current;
+    if (timeElapsed < 3000) {
+      setErrorMessage('Submission too fast. Please wait a moment and try again.');
+      return false;
+    }
+
+    // 3. Spam keyword filter
+    const lowerMessage = message.toLowerCase();
+    const lowerName = name.toLowerCase();
+    const hasSpamKeyword = SPAM_KEYWORDS.some(
+      (keyword) => lowerMessage.includes(keyword) || lowerName.includes(keyword)
+    );
+
+    if (hasSpamKeyword) {
+      setErrorMessage('Message contains flagged promotional keywords.');
+      return false;
+    }
+
+    // 4. Excessive external links check
+    const urlMatches = message.match(/https?:\/\//gi);
+    if (urlMatches && urlMatches.length > 2) {
+      setErrorMessage('Too many links detected. Please remove excess URLs.');
+      return false;
+    }
+
+    // 5. LocalStorage Rate Limiter (Max 2 per 10 minutes)
+    try {
+      const storageKey = 'portfolio_contact_limit';
+      const rawHistory = localStorage.getItem(storageKey);
+      const history: number[] = rawHistory ? JSON.parse(rawHistory) : [];
+      const tenMinsAgo = Date.now() - 10 * 60 * 1000;
+      const recentSubmissions = history.filter((t) => t > tenMinsAgo);
+
+      if (recentSubmissions.length >= 2) {
+        setErrorMessage('Rate limit reached (max 2 messages per 10 mins). Please try again later.');
+        return false;
+      }
+
+      recentSubmissions.push(Date.now());
+      localStorage.setItem(storageKey, JSON.stringify(recentSubmissions));
+    } catch (e) {
+      // Fallback if localStorage blocked
+    }
+
+    return true;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage('');
+
+    if (!validateAntiSpam()) {
+      return;
+    }
+
     setStatus('submitting');
 
     try {
@@ -23,8 +201,9 @@ export const ContactForm = ({ isModal = false }: { isModal?: boolean }) => {
           name,
           email,
           message,
-          _subject: `New Portfolio Message from ${name}`,
-          _template: "box"
+          _subject: `New Portfolio Message from ${name} ${isGoogleVerified ? '[Verified Google Email]' : ''}`,
+          _template: "box",
+          _honey: honeypot
         })
       });
 
@@ -33,6 +212,7 @@ export const ContactForm = ({ isModal = false }: { isModal?: boolean }) => {
         setName('');
         setEmail('');
         setMessage('');
+        setIsGoogleVerified(false);
         setTimeout(() => setStatus('idle'), 4000);
       } else {
         setStatus('error');
@@ -44,6 +224,20 @@ export const ContactForm = ({ isModal = false }: { isModal?: boolean }) => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      {/* Hidden Honeypot Field for Spambots */}
+      <div style={{ display: 'none', opacity: 0, position: 'absolute', left: '-9999px' }} aria-hidden="true">
+        <label htmlFor="phone_website_address">Do not fill this field</label>
+        <input
+          type="text"
+          id="phone_website_address"
+          name="phone_website_address"
+          tabIndex={-1}
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+          autoComplete="off"
+        />
+      </div>
+
       {status === 'success' ? (
         <div className="text-center py-10 bg-green-500/10 border border-green-500/25 rounded-2xl p-6 animate-modal">
           <CheckCircle2 className="w-12 h-12 text-green-400 mx-auto mb-4" />
@@ -70,18 +264,48 @@ export const ContactForm = ({ isModal = false }: { isModal?: boolean }) => {
           </div>
 
           <div>
-            <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">
-              Email Address
-            </label>
-            <input
-              required
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-[#111]/60 border border-white/5 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-green-400 focus:bg-[#161616]/80 transition-all duration-300 placeholder-gray-600"
-              placeholder="e.g. john@example.com"
-              disabled={status === 'submitting'}
-            />
+            <div className="flex items-center justify-between mb-2">
+              <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest">
+                Email Address <span className="text-red-400">* (Google Verified)</span>
+              </label>
+              
+              {isGoogleVerified && (
+                <span className="flex items-center gap-1 text-[10px] font-semibold text-green-400 bg-green-500/10 border border-green-500/20 px-2 py-0.5 rounded-md animate-fade-in">
+                  <ShieldCheck className="w-3 h-3" /> Verified Google Email
+                </span>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              {!isGoogleVerified ? (
+                <button
+                  type="button"
+                  onClick={handleTriggerGoogleAuth}
+                  disabled={isGoogleLoading}
+                  className="interactive-target w-full flex items-center justify-center gap-2.5 bg-white/5 hover:bg-white/10 border border-white/15 hover:border-green-400/40 px-4 py-3.5 rounded-xl text-xs font-semibold text-white transition-all duration-300 shadow-sm hover:shadow-green-500/5 cursor-pointer group"
+                >
+                  <svg className="w-4 h-4 shrink-0 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24">
+                    <path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.7 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.3 9 5 12 5z" />
+                    <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z" />
+                    <path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.8 0-1.3.2-2.1.4-2.8L1.9 6.3C.7 8.7 0 10.3 0 12s.7 3.3 1.9 5.7l3.7-2.9z" />
+                    <path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.3-6.4-5.2L1.9 16C3.7 19.7 7.5 23 12 23z" />
+                  </svg>
+                  <span>{isGoogleLoading ? 'Connecting to Google...' : 'Select & Verify Google Email Account'}</span>
+                </button>
+              ) : (
+                <div className="relative">
+                  <input
+                    required
+                    type="email"
+                    value={email}
+                    readOnly
+                    className="w-full bg-green-500/5 border border-green-500/40 rounded-xl px-4 py-3.5 text-sm text-green-200 focus:outline-none cursor-not-allowed font-medium"
+                    disabled={status === 'submitting'}
+                  />
+                  <Lock className="w-4 h-4 text-green-400 absolute right-3.5 top-1/2 -translate-y-1/2" />
+                </div>
+              )}
+            </div>
           </div>
 
           <div>
@@ -98,6 +322,13 @@ export const ContactForm = ({ isModal = false }: { isModal?: boolean }) => {
               disabled={status === 'submitting'}
             />
           </div>
+
+          {errorMessage && (
+            <div className="flex items-center gap-2 text-xs text-amber-400 mt-2 bg-amber-500/10 border border-amber-500/20 p-3 rounded-lg">
+              <AlertCircle className="w-4 h-4 shrink-0" />
+              <span>{errorMessage}</span>
+            </div>
+          )}
 
           {status === 'error' && (
             <div className="flex items-center gap-2 text-xs text-red-400 mt-2 bg-red-500/10 border border-red-500/20 p-3 rounded-lg">
