@@ -22,6 +22,40 @@ export const Projects = () => {
   const projects: Project[] = [
     {
       num: '01',
+      title: 'EduGlow',
+      subtitle: 'Multi-Agent EdTech Platform',
+      description: 'A premium, developer-grade educational ecosystem engineered for CS education that personalizes learning through AI tutoring, cognitive misconception detection, and dynamic study paths.',
+      tags: ['React', 'Python', 'Flask', 'SQLite', 'FastMCP', 'Gemini API'],
+      image: '/project/eduglow.png',
+      githubUrl: 'https://github.com/atanudas12-hub/EduGlow',
+      features: [
+        'Socratic Dialogue Engine: Guides reasoning dynamically without revealing answers.',
+        'Voice AI Viva Examiner: Tracks speaking clarity, speech metrics (WPM), and filler words.',
+        'Secure AST Code Sandbox: Traverses and filters execution trees to block malicious commands.',
+        'Leitner Active Recall System: Schedules spaced revision decks across custom intervals.'
+      ],
+      challenges: 'Conducting secure Python code compilation in the frontend sandbox while preventing execution escapes or dunder property access.',
+      architecture: 'Built with a React (Vite) frontend, a Python Flask API backend, Google Gemini for cognitive profiling, and a FastMCP Server exposing SQLite learning histories to external LLM environments.'
+    },
+    {
+      num: '02',
+      title: 'SpamGuard AI',
+      subtitle: 'End-to-End Email & SMS Spam Classifier',
+      description: 'An end-to-end Machine Learning & NLP web application engineered to detect and classify emails and SMS messages as Spam or Ham in real time with high precision.',
+      tags: ['Python', 'Streamlit', 'Scikit-Learn', 'NLTK', 'TF-IDF', 'Machine Learning'],
+      image: '/project/spamguard-ai.png',
+      githubUrl: 'https://github.com/atanudas12-hub/SpamGuard-AI',
+      features: [
+        'NLP Preprocessing Pipeline: Converts raw text via lowercasing, word tokenization, noise removal, English stopword filtering, and Porter Stemming.',
+        'High-Precision ML Engine: TF-IDF vectorization (3,000 top features) paired with Multinomial Naive Bayes achieving near 100% precision.',
+        'Algorithm Benchmarking: Evaluated 8+ classifiers including SVM, Random Forest, AdaBoost, XGBoost, and Naive Bayes variants.',
+        'Real-time Streamlit UI: Interactive inference dashboard for instant spam detection and confidence scoring.'
+      ],
+      challenges: 'Eliminating false-positives on critical legitimate messages (Ham) while preserving high recall and fast inference times on arbitrary user inputs.',
+      architecture: 'Offline exploratory analysis & pickle serialization pipeline (Jupyter) feeding an online Streamlit inference engine powered by Scikit-Learn and NLTK.'
+    },
+    {
+      num: '03',
       title: 'Placement Portal',
       subtitle: 'Featured Academic Capstone',
       description: 'A comprehensive, roles-based campus recruitment portal designed to manage operations for students, recruiters, and placement officers.',
@@ -37,7 +71,7 @@ export const Projects = () => {
       architecture: 'Flask client-server architecture using Jinja dynamic views with a SQLite transactional layer, integrated with background REST endpoints.'
     },
     {
-      num: '02',
+      num: '04',
       title: 'Human Resource Management System',
       subtitle: 'A comprehensive employee management platform.',
       description: 'An interactive analysis dashboard that ingests raw sales transaction records to generate visual reports.',
@@ -51,23 +85,6 @@ export const Projects = () => {
       ],
       challenges: 'Handling real-time client side data rendering for files containing over 50,000 transaction records smoothly.',
       architecture: 'Pandas data wrangling pipelines combined with a clean Next.js dashboard template using charting libraries.'
-    },
-    {
-      num: '03',
-      title: 'EduGlow',
-      subtitle: 'Multi-Agent EdTech Platform',
-      description: 'A premium, developer-grade educational ecosystem engineered for CS education that personalizes learning through AI tutoring, cognitive misconception detection, and dynamic study paths.',
-      tags: ['React', 'Python', 'Flask', 'SQLite', 'FastMCP', 'Gemini API'],
-      image: '/project/eduglow.png',
-      githubUrl: 'https://github.com/atanudas12-hub/EduGlow',
-      features: [
-        'Socratic Dialogue Engine: Guides reasoning dynamically without revealing answers.',
-        'Voice AI Viva Examiner: Tracks speaking clarity, speech metrics (WPM), and filler words.',
-        'Secure AST Code Sandbox: Traverses and filters execution trees to block malicious commands.',
-        'Leitner Active Recall System: Schedules spaced revision decks across custom intervals.'
-      ],
-      challenges: 'Conducting secure Python code compilation in the frontend sandbox while preventing execution escapes or dunder property access.',
-      architecture: 'Built with a React (Vite) frontend, a Python Flask API backend, Google Gemini for cognitive profiling, and a FastMCP Server exposing SQLite learning histories to external LLM environments.'
     },
   ];
 
@@ -116,7 +133,7 @@ export const Projects = () => {
       {/* Projects Bento Deck */}
       <div className="projects-grid grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
         {projects.map((proj, idx) => {
-          const isFeatured = idx === 0;
+          const isFeatured = idx === 0 || idx === 1;
           const isExpanded = expandedProject === proj.title;
 
           return (

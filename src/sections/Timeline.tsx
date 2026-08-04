@@ -20,12 +20,20 @@ export const Timeline = () => {
 
   const timelineData: TimelineItem[] = [
     {
-      year: '2025 — Present',
+      year: '2024 — Present',
       type: 'education',
       title: 'IIT Madras',
       subtitle: 'Bachelor of Science (BS) in Data Science',
       description: 'Acquiring theoretical foundations in statistical inference, programming paradigms, machine learning engineering, and database relations.',
       details: ['Focused on Python, database modeling, and automated pipelines.', 'Actively participating in developer cohorts and hackathons.']
+    },
+    {
+      year: '2025 — Present',
+      type: 'experience',
+      title: 'Independent Developer',
+      subtitle: 'Building full-stack products & data models',
+      description: 'Designing and deploying web applications using Python, Flask, Jinja, Next.js, and SQL, while training ML structures.',
+      details: ['Successfully completed the Placement Portal MAD-1 academic product.', 'Built and hosted data scripts and predictive models.']
     },
     {
       year: '2026',
@@ -34,14 +42,6 @@ export const Timeline = () => {
       subtitle: 'Full-Stack Developer & Analyst role',
       description: 'Actively preparing and applying for development or analytical opportunities to build real-world products at scale.',
       details: ['Demonstrating robust code design with multiple frontend and backend frameworks.', 'Eager to collaborate on high-traffic databases and services.']
-    },
-    {
-      year: '2023 — Present',
-      type: 'experience',
-      title: 'Independent Developer',
-      subtitle: 'Building full-stack products & data models',
-      description: 'Designing and deploying web applications using Python, Flask, Jinja, Next.js, and SQL, while training ML structures.',
-      details: ['Successfully completed the Placement Portal MAD-1 academic product.', 'Built and hosted data scripts and predictive models.']
     }
   ];
 
@@ -86,7 +86,7 @@ export const Timeline = () => {
 
   return (
     <section id="timeline" ref={containerRef} className="py-24 px-6 md:px-12 lg:px-24 max-w-5xl mx-auto relative">
-      
+
       {/* Header */}
       <div className="flex items-center gap-4 mb-20 fade-up">
         <span className="text-green-400 font-display text-xl select-none">✱</span>
@@ -97,7 +97,7 @@ export const Timeline = () => {
 
       {/* Timeline Layout */}
       <div className="relative pl-8 md:pl-16">
-        
+
         {/* Vertical SVG Progress Line */}
         <div className="absolute left-[15px] md:left-[31px] top-0 bottom-0 w-[2px] z-0">
           <svg className="w-full h-full" viewBox="0 0 2 1000" preserveAspectRatio="none">
@@ -124,7 +124,7 @@ export const Timeline = () => {
             const isEdu = item.type === 'education';
             return (
               <div key={index} className="timeline-block relative z-10 flex flex-col md:flex-row gap-6 md:gap-12 text-left">
-                
+
                 {/* Node icon bullet */}
                 <div className="absolute -left-[30px] md:-left-[46px] top-1.5 w-[32px] h-[32px] rounded-full bg-[#0a0a0a] border-2 border-white/10 group-hover:border-green-400 flex items-center justify-center text-gray-400 transition-colors z-20 shadow-md shadow-black/80">
                   <div className="w-[20px] h-[20px] rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
