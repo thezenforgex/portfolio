@@ -31,7 +31,7 @@ export const StatsBento = () => {
 
   return (
     <section id="credentials" className="py-24 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
-      
+
       {/* Header */}
       <div className="flex items-center gap-4 mb-16 fade-up">
         <span className="text-green-400 font-display text-xl select-none">✱</span>
@@ -42,7 +42,7 @@ export const StatsBento = () => {
 
       {/* Grid */}
       <div className="bento-achieve-grid grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
-        
+
         {/* --- LEETCODE --- */}
         <div
           onMouseMove={handleCardMouseMove}
@@ -283,12 +283,12 @@ export const StatsBento = () => {
           />
           <div className="relative z-10 flex flex-col justify-between h-full">
             <div className="mb-8">
-              <span className="text-[10px] text-gray-500 font-sans tracking-wider block mb-1">kaggle.com/atanudas0712</span>
+              <span className="text-[10px] text-gray-500 font-sans tracking-wider block mb-1" url="https://www.kaggle.com/atanudas0712">kaggle.com/atanudas0712</span>
               <h4 className="text-2xl font-bold font-sans text-white uppercase tracking-wide group-hover:text-sky-400 transition-colors">Kaggle Achievements</h4>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              
+
               {/* Badge 1 */}
               <div className="flex gap-4 items-center bg-black/60 rounded-2xl border border-white/5 p-5">
                 <div className="w-16 h-16 shrink-0 group-hover:scale-105 transition-transform duration-300">
