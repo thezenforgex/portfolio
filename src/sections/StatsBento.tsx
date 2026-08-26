@@ -165,7 +165,7 @@ export const StatsBento = () => {
 
           <div className="overflow-x-auto rounded-2xl border border-white/5 bg-black/60 p-5">
             <img
-              src="https://ghchart.rshah.org/4ade80/atanudas12-hub"
+              src="https://ghchart.rshah.org/4ade80/thezenforgex"
               alt="Atanu Das GitHub contribution chart"
               className="min-w-[760px] w-full h-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
               loading="lazy"
