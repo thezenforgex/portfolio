@@ -121,7 +121,7 @@ export const Hero = ({ onOpenHireModal }: HeroProps) => {
           {/* Social icons row */}
           <div className="hero-fade-in flex items-center gap-6 mt-12">
             <a
-              href="https://github.com/atanudas12-hub"
+              href="https://github.com/thezenforgex"
               target="_blank"
               rel="noreferrer"
               className="interactive-target text-gray-500 hover:text-white transition-colors duration-300"

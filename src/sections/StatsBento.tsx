@@ -153,7 +153,7 @@ export const StatsBento = () => {
               <h4 className="text-2xl font-bold font-sans text-white uppercase tracking-wide">Contribution Chart</h4>
             </div>
             <a
-              href="https://github.com/atanudas12-hub"
+              href="https://github.com/thezenforgex"
               target="_blank"
               rel="noreferrer"
               className="interactive-target flex items-center gap-2 border border-white/10 hover:border-green-400/40 bg-white/5 hover:bg-green-400/5 hover:text-green-400 px-5 py-3 rounded-xl text-xs font-semibold uppercase tracking-wider text-gray-200 transition-all duration-300"

@@ -27,7 +27,7 @@ export const Projects = () => {
       description: 'A premium, developer-grade educational ecosystem engineered for CS education that personalizes learning through AI tutoring, cognitive misconception detection, and dynamic study paths.',
       tags: ['React', 'Python', 'Flask', 'SQLite', 'FastMCP', 'Gemini API'],
       image: '/project/eduglow.png',
-      githubUrl: 'https://github.com/atanudas12-hub/EduGlow',
+      githubUrl: 'https://github.com/thezenforgex/EduGlow',
       features: [
         'Socratic Dialogue Engine: Guides reasoning dynamically without revealing answers.',
         'Voice AI Viva Examiner: Tracks speaking clarity, speech metrics (WPM), and filler words.',
@@ -44,7 +44,7 @@ export const Projects = () => {
       description: 'An end-to-end Machine Learning & NLP web application engineered to detect and classify emails and SMS messages as Spam or Ham in real time with high precision.',
       tags: ['Python', 'Streamlit', 'Scikit-Learn', 'NLTK', 'TF-IDF', 'Machine Learning'],
       image: '/project/spamguard-ai.png',
-      githubUrl: 'https://github.com/atanudas12-hub/SpamGuard-AI',
+      githubUrl: 'https://github.com/thezenforgex/SpamGuard-AI',
       features: [
         'NLP Preprocessing Pipeline: Converts raw text via lowercasing, word tokenization, noise removal, English stopword filtering, and Porter Stemming.',
         'High-Precision ML Engine: TF-IDF vectorization (3,000 top features) paired with Multinomial Naive Bayes achieving near 100% precision.',
@@ -61,7 +61,7 @@ export const Projects = () => {
       description: 'A comprehensive, roles-based campus recruitment portal designed to manage operations for students, recruiters, and placement officers.',
       tags: ['Python', 'Flask', 'SQLite', 'Jinja', 'FastAPI'],
       image: '/project/placement-portal.png',
-      githubUrl: 'https://github.com/atanudas12-hub/MAD1-Project',
+      githubUrl: 'https://github.com/thezenforgex/MAD1-Project',
       features: [
         'Secure multi-tier login for Students, Recruiters, and Admin Officers.',
         'Automated resume filtering based on job criteria thresholds.',

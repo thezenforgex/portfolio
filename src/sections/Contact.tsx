@@ -418,7 +418,7 @@ export const Contact = () => {
               </span>
               <div className="flex flex-wrap gap-4">
                 <a
-                  href="https://github.com/atanudas12-hub"
+                  href="https://github.com/thezenforgex"
                   target="_blank"
                   rel="noreferrer"
                   className="interactive-target flex items-center gap-2 border border-white/10 hover:border-green-400/50 bg-white/5 px-4 py-2.5 rounded-xl text-xs font-semibold text-gray-300 hover:text-green-400 transition-all duration-300"
