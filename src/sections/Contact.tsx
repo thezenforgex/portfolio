@@ -191,7 +191,7 @@ export const ContactForm = ({ isModal = false }: { isModal?: boolean }) => {
     setStatus('submitting');
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/atanudas120706@gmail.com", {
+      const response = await fetch("https://formsubmit.co/ajax/dasatanu.iitm@gmail.com", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
@@ -398,7 +398,7 @@ export const Contact = () => {
                 Direct Inquiries
               </span>
               <a
-                href="mailto:atanudas120706@gmail.com"
+                href="mailto:dasatanu.iitm@gmail.com"
                 className="interactive-target flex items-center gap-3 text-white hover:text-green-400 transition-colors duration-300 group w-fit"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 border border-white/10 group-hover:border-green-400/20 text-gray-400 group-hover:text-green-400 transition-colors">
@@ -406,7 +406,7 @@ export const Contact = () => {
                 </div>
                 <div className="text-left">
                   <span className="text-xs text-gray-500 block">Email Address</span>
-                  <span className="text-sm font-semibold">atanudas120706@gmail.com</span>
+                  <span className="text-sm font-semibold">dasatanu.iitm@gmail.com</span>
                 </div>
               </a>
             </div>
