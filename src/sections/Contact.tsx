@@ -268,7 +268,7 @@ export const ContactForm = ({ isModal = false }: { isModal?: boolean }) => {
               <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest">
                 Email Address <span className="text-red-400">* (Google Verified)</span>
               </label>
-              
+
               {isGoogleVerified && (
                 <span className="flex items-center gap-1 text-[10px] font-semibold text-green-400 bg-green-500/10 border border-green-500/20 px-2 py-0.5 rounded-md animate-fade-in">
                   <ShieldCheck className="w-3 h-3" /> Verified Google Email
@@ -363,10 +363,10 @@ export const ContactForm = ({ isModal = false }: { isModal?: boolean }) => {
 export const Contact = () => {
   return (
     <section id="contact" className="relative pt-32 pb-12 border-t border-white/5 bg-[#030303]">
-      
+
       {/* Outer container */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-        
+
         {/* Dynamic header / bloom */}
         <div className="relative text-center mb-24 z-10">
           <span className="text-gray-500 text-xs font-bold uppercase tracking-widest font-sans mb-3 block">
@@ -380,7 +380,7 @@ export const Contact = () => {
 
         {/* Form & details panel grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start relative z-10">
-          
+
           {/* Left panel: Info */}
           <div className="lg:col-span-5 flex flex-col gap-10 text-left">
             <div>
@@ -477,9 +477,6 @@ export const Contact = () => {
 
           <div className="text-center md:text-right">
             <span>© {new Date().getFullYear()} Atanu Das.</span>
-            <span className="block mt-1 text-[10px] text-gray-600 font-bold uppercase tracking-wider">
-              Handcrafted in India
-            </span>
           </div>
         </div>
 

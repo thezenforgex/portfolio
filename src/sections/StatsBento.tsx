@@ -61,11 +61,11 @@ export const StatsBento = () => {
           <div className="relative z-10 flex flex-col justify-between h-full">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 mb-8">
               <div>
-                <span className="text-[10px] text-gray-500 font-sans tracking-wider block mb-1">leetcode.com/u/atanudas12-hub</span>
+                <span className="text-[10px] text-gray-500 font-sans tracking-wider block mb-1">leetcode.com/u/atanu_das__/</span>
                 <h4 className="text-2xl font-bold font-sans text-white uppercase tracking-wide group-hover:text-yellow-400 transition-colors">LeetCode Profile</h4>
               </div>
               <a
-                href="https://leetcode.com/u/atanudas12-hub/"
+                href="https://leetcode.com/u/atanu_das__/"
                 target="_blank"
                 rel="noreferrer"
                 className="interactive-target flex items-center gap-2 border border-white/10 hover:border-yellow-400/40 bg-white/5 hover:bg-yellow-400/5 hover:text-yellow-400 px-4 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider text-gray-300 transition-all duration-300"
@@ -77,7 +77,7 @@ export const StatsBento = () => {
 
             <div className="overflow-hidden rounded-2xl border border-white/5 bg-black/60 p-4">
               <img
-                src="https://leetcard.jacoblin.cool/atanudas12-hub?theme=dark&font=Inter&ext=heatmap"
+                src="https://leetcard.jacoblin.cool/atanu_das__?theme=dark&font=Inter&ext=heatmap"
                 alt="Atanu Das LeetCode Stats"
                 className="w-full h-auto opacity-95 hover:opacity-100 transition-opacity duration-300"
                 loading="lazy"
@@ -149,7 +149,7 @@ export const StatsBento = () => {
           />
           <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
             <div>
-              <span className="text-[10px] text-gray-500 font-sans tracking-wider block mb-1">github.com/atanudas12-hub</span>
+              <span className="text-[10px] text-gray-500 font-sans tracking-wider block mb-1">github.com/thezenforgex</span>
               <h4 className="text-2xl font-bold font-sans text-white uppercase tracking-wide">Contribution Chart</h4>
             </div>
             <a
